@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+{% import 'bootstrap/wtf.html' as wtf%}
+
+{%block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename= 'css/styles.css')}}">
+{%endblock %}
+{% block content %}
+ <body class="bg-info">
+  <div  class="container ">
+
+    {{wtf.quick_form(subscription_form)}} 
+
+  </div>
+ 
+ </body> 
+
+{%endblock%}
