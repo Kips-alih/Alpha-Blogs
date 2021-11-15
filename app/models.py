@@ -19,7 +19,9 @@ class User(UserMixin,db.Model):
     profile_pic_path = db.Column(db.String())
     pass_secure = db.Column(db.String(255))
 
-    # pitch = db.relationship('Pitch',backref = 'user',lazy = "dynamic")
+    blog = db.relationship('Blog',backref = 'user',lazy = "dynamic")
+    comment = db.relationship('Comment',backref = 'user',lazy = "dynamic")
+
     # upvote = db.relationship('Like',backref='user',lazy='dynamic')
     # downvote = db.relationship('Dislike',backref='user',lazy='dynamic')
 
@@ -40,8 +42,70 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f'User {self.username}'
 
+class Blog(db.Model): 
+    _tablename_ = 'blogs'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255))
+    category = db.Column(db.String)
+    description = db.Column(db.Text)
+    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    comment = db.relationship('Comment', backref='blog', lazy='dynamic')
+    
+
+    # save blog
+
+    def save_blog(self):
+        db.session.add(self)
+        db.session.commit()
+     
+    #Delete blog 
+    def delete_blog(self):
+        db.session.delete(self)
+        db.session.commit()
 
 
+    # get blog by id
+    @classmethod
+    def get_blog(cls, id):
+        blog = Blog.query.filter_by(id=id).first()
+        return blog
+
+    @classmethod
+    def get_blogs(cls,id):
+            blogs =Blog.query.filter_by(blog_id=id).all()
+            return blogs
+
+    def _repr_(self):
+        return f'Blog {self.title}'
+
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.String(255))
+    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    blog_id = db.Column(db.Integer,db.ForeignKey("blog.id"))
+
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete_comment(self):
+        db.session.delete(self)
+        db.session.commit()
+    
+
+    @classmethod
+    def get_comments(cls,id):
+        comments = Comment.query.filter_by(blog_id=id).all()
+        return comments 
+    
+    def _repr_(self):
+
+        return f'Comment {self.comment}'
 class Quote:
     """
     Qoute blueprint
