@@ -1,0 +1,15 @@
+.navbar{
+  color: white;
+}
+.quote{
+  background-color: aqua;
+}
+button.delete{
+  border-radius: 5px;
+  background: #d61717;
+}
+a.link{
+  text-decoration: none;
+  color: white;
+  
+}
