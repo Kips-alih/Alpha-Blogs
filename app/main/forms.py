@@ -1,5 +1,5 @@
 from wtforms import StringField,TextAreaField, SubmitField, SelectField
-from wtforms.validators import Required
+from wtforms.validators import Required,Email
 from flask_wtf import FlaskForm
 
 
@@ -17,3 +17,8 @@ class BlogForm(FlaskForm):
 class CommentForm(FlaskForm):
     comment = StringField('Comment here', validators=[Required()])
     submit = SubmitField('Submit')
+
+
+class SubscriptionForm(FlaskForm):
+    email=SelectField('Enter your email adress',validators=[Required(),Email()])
+    submit=SubmitField('Subscribe')
