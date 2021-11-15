@@ -36,15 +36,15 @@
     {% for blog in blogs %}
   
      <div class="row">
-       <div class="col-md-12">
+       <div class="col-md-6">
         <p><strong>Category: {{blog.category}}</strong></p>
         <p><strong>Title:</strong> {{ blog.title }}</p>
         <p><strong>Description:</strong> {{ blog.description}}</p>
         <p><strong>Date posted:</strong> {{blog.date_posted.strftime('%Y-%m-%d')}}</p>
         <p><strong>Blog Author:</strong> {{blog.user.username}}</p>
         <button class="btn btn-sm bg-danger delete"><a class="link" href="{{ url_for('main.delete_blog',id=blog.id)}}" title="Delete Blog">Delete</a></button>
-        <button class="btn btn-sm bg-primary "><a class="link" href="{{ url_for('main.blog_comments', id =blog.id)}}">Add comment</a></button>
-        <button class="btn btn-sm bg-primary "><a class="link" href="{{ url_for('main.read_comments', id =blog.id)}}">View Comments</a></button>
+        <button class="btn btn-sm bg-primary "><a class="link" href="{{ url_for('main.blog_comments', id =blog.id)}}" title="add your comment">Add comment</a></button>
+        <button class="btn btn-sm bg-primary "><a class="link" href="{{ url_for('main.read_comments', id =blog.id)}}" title="view comments">View Comments</a></button>
 
       </div>
 
