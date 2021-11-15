@@ -1,5 +1,6 @@
 {% extends 'base.html'%}
 {% import 'macros.html' as macro%}
+{% import 'bootstrap/wtf.html' as wtf%}
 
 
 {% block styles%}
@@ -16,6 +17,7 @@
   <div class="row quote">
     <div class="col-md-2"></div>
       <div class="col-md-8 text-center">
+          <p>Welcome to Alpha blogs!!</p>
           <div class="">
               <h3>
                   <q>
@@ -29,6 +31,26 @@
       </div>
   </div>
 </div>
+<div class="container">
+  <h3 class="text-center">Find the blogs below</h3>
+    {% for blog in blogs %}
+  
+     <div class="row">
+       <div class="col-md-12">
+        <p><strong>Category: {{blog.category}}</strong></p>
+        <p><strong>Title:</strong> {{ blog.title }}</p>
+        <p><strong>Description:</strong> {{ blog.description}}</p>
+        <p><strong>Date posted:</strong> {{blog.date_posted.strftime('%Y-%m-%d')}}</p>
+        <p><strong>Blog Author:</strong> {{blog.user.username}}</p>
+        <button class="btn btn-sm bg-danger delete"><a class="link" href="{{ url_for('main.delete_blog',id=blog.id)}}" title="Delete Blog">Delete</a></button>
+        <button class="btn btn-sm bg-primary "><a class="link" href="{{ url_for('main.blog_comments', id =blog.id)}}">Add comment</a></button>
+        <button class="btn btn-sm bg-primary "><a class="link" href="{{ url_for('main.read_comments', id =blog.id)}}">View Comments</a></button>
 
+      </div>
 
+      
+    
+  
+    {% endfor %}
+</div>
 {% endblock %}
