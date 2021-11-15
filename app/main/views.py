@@ -1,8 +1,8 @@
 from flask import render_template,request,redirect,url_for,abort,flash
-
-from app.main.forms import UpdateProfile,BlogForm,CommentForm
+from ..email import mail_message
+from app.main.forms import UpdateProfile,BlogForm,CommentForm,SubscriptionForm
 from . import main
-from ..models import  User,Blog,Comment
+from ..models import  User,Blog,Comment,Subscriber
 from flask_login import login_required,current_user
 from .. import db,photos
 from ..request import get_quotes
@@ -44,6 +44,26 @@ def user_blog():
         blogs = Blog.query.order_by(Blog.date_posted).all()
     
     return render_template('blog.html', blogs=blogs,blog_form = blog_form)
+
+
+@main.route('/subscribe', methods=['GET', 'POST'])
+@login_required
+def subscriber():
+    subscription_form = SubscriptionForm()
+
+    if subscription_form.validate_on_submit():
+        email=subscription_form.email.data
+        
+        subscriber = Subscriber(email=email,user=current_user)
+
+        subscriber.save_subscriber()
+        db.session.add(subscriber)
+        db.session.commit()
+        
+        return redirect(url_for('main.index'))
+    
+    
+    return render_template('subscription.html',subscription_form=subscription_form)
 
 
 
