@@ -113,3 +113,16 @@ class Quote:
     def __init__(self,quote, author):
         self.quote = quote
         self.author = author
+
+
+class Subscriber(db.Model):
+    __tablename__ = "subscribers"
+    id=db.Column(db.Integer,primary_key=True)
+    email = db.Column(db.String(255),index=True)
+
+    def save_subscriber(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def __repr__(self):
+        return f'Subscriber:{self.email}'
