@@ -1,0 +1,3 @@
+Hello {{user.username}}
+Welcome to Alpha Blogs!
+We have just seen you have subscribed for our application and want to welcome you to the family.
