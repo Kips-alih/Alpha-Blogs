@@ -12,8 +12,8 @@ A personal blogging website where you can create and share your opinions and oth
 
 * Open your terminal
 * Create a folder and navigate to the folder you created.
-* Run `git clone https://github.com/Kips-alih/Minute-Pitches-App.git`
-* Run `cd Minute-Pitches-App` command to confirm it was successfully cloned.
+* Run `git clone https://github.com/Kips-alih/alpha-blogs.git`
+* Run `cd alpha-blogs` command to confirm it was successfully cloned.
 
 ## User Stories
 
@@ -34,7 +34,7 @@ As a writer you will be able to :
 
 ### To run this application
 
- Click the [live](https://minpitches.herokuapp.com/) link.
+ Click the [live](https://alphblog.herokuapp.com//) link.
 
 ## Technologies used
 
