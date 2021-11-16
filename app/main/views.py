@@ -152,3 +152,20 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
+
+@main.route('/update/<int:id>', methods=['GET', 'POST'])
+@login_required
+def update_blog(id):
+    blog = Blog.query.get_or_404(id)
+    update_form = BlogForm()
+    if update_form.validate_on_submit():
+        blog.title = update_form.title.data
+        blog.description = update_form.description.data
+        db.session.add(blog)
+        db.session.commit()
+
+        return redirect(url_for('main.index'))
+    elif request.method == 'GET':
+        update_form.title.data = blog.title
+        update_form.description.data = blog.description
+    return render_template('updates.html', blog=blog, update_form=update_form)

@@ -42,6 +42,8 @@
         <button class="btn btn-sm bg-danger delete"><a class="link" href="{{ url_for('main.delete_blog',id=blog.id)}}" title="Delete Blog">Delete</a></button>
         <button class="btn btn-sm bg-primary "><a class="link" href="{{ url_for('main.blog_comments', id =blog.id)}}" title="add your comment">Add comment</a></button>
         <button class="btn btn-sm bg-primary "><a class="link" href="{{ url_for('main.read_comments', id =blog.id)}}" title="view comments">View Comments</a></button>
+        <button class="btn btn-sm bg-primary "><a class="link" href="{{url_for('main.update_blog', id=blog.id)}}" title="Update this blog">Edit</a></button>
+
 
       </div>
 
