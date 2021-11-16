@@ -11,9 +11,7 @@
 {% endblock %}
 
 {% block content %}
-
-<!-- <h1>Hello kenya</h1> -->
-<div class="container-fluid">
+<div class=" top container-fluid">
   <div class="row quote">
     <div class="col-md-2"></div>
       <div class="col-md-8 text-center">
@@ -36,12 +34,11 @@
     {% for blog in blogs %}
   
      <div class="row">
-       <div class="col-md-6">
+       <div class=" text-center col-md-12">
         <p><strong>Category: {{blog.category}}</strong></p>
         <p><strong>Title:</strong> {{ blog.title }}</p>
         <p><strong>Description:</strong> {{ blog.description}}</p>
-        <p><strong>Date posted:</strong> {{blog.date_posted.strftime('%Y-%m-%d')}}</p>
-        <p><strong>Blog Author:</strong> {{blog.user.username}}</p>
+        <p><strong>Date posted:</strong> {{blog.date_posted.strftime('%Y-%m-%d')}} by <strong>{{blog.user.username}}</strong></p>
         <button class="btn btn-sm bg-danger delete"><a class="link" href="{{ url_for('main.delete_blog',id=blog.id)}}" title="Delete Blog">Delete</a></button>
         <button class="btn btn-sm bg-primary "><a class="link" href="{{ url_for('main.blog_comments', id =blog.id)}}" title="add your comment">Add comment</a></button>
         <button class="btn btn-sm bg-primary "><a class="link" href="{{ url_for('main.read_comments', id =blog.id)}}" title="view comments">View Comments</a></button>
@@ -52,5 +49,11 @@
     
   
     {% endfor %}
+</div>
+<br>
+<div class="container-fluid">
+  <div class="card-footer text-center">
+    <p>&copy; copyright  2021 Kipngeno</p>
+  </div>
 </div>
 {% endblock %}

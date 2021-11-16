@@ -2,8 +2,9 @@
   color: white;
 }
 .quote{
-  background-color: aqua;
+  background: aqua;
 }
+
 button.delete{
   border-radius: 5px;
   background: #d61717;
@@ -12,4 +13,8 @@ a.link{
   text-decoration: none;
   color: white;
   
+}
+.card-footer{
+  background:black;
+  color: white;
 }
