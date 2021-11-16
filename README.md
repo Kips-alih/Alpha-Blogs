@@ -34,7 +34,7 @@ As a writer you will be able to :
 
 ### To run this application
 
- Click the [live](https://alphblog.herokuapp.com//) link.
+ Click the [live](https://alphblogs.herokuapp.com/) link.
 
 ## Technologies used
 
